@@ -10,7 +10,6 @@ export default function TicketCard({ ticket }) {
             <Link href={`/tickets/${ticket.objectId}`}>
                 Edit
             </Link>
-            
-            </div>
-            );
-            }
+        </div>
+    );
+}

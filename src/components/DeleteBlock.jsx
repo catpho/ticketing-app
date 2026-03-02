@@ -1,3 +1,5 @@
+'use client';
+
 import Parse from '../lib/parseClient';
 
 export default function DeleteBlock({ticketId, onDelete}) {
