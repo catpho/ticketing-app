@@ -6,26 +6,33 @@ import Parse from '../../../lib/parseClient';
 import TicketForm from '../../../components/TicketForm';
 import DeleteBlock from '../../../components/DeleteBlock';
 
-export default function TicketDetail() {
+export default function TicketDetail({ params }) {
   const router = useRouter();
-  const { id } = router.query;
   const [ticket, setTicket] = useState(null);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!id) return;
     const fetchTicket = async () => {
-      const query = new Parse.Query('Ticket');
-      const result = await query.get(id);
-      setTicket(result);
+      try {
+        const { id } = await params;
+        const query = new Parse.Query('Ticket');
+        const result = await query.get(id);
+        setTicket(result);
+      } catch (error) {
+        console.error('Error fetching ticket:', error);
+      } finally {
+        setLoading(false);
+      }
     };
     fetchTicket();
-  }, [id]);
+  }, [params]);
 
   const handleDelete = () => {
     router.push('/');
   };
 
-  if (!ticket) return <div>Loading...</div>;
+  if (loading) return <div>Loading...</div>;
+  if (!ticket) return <div>Ticket not found</div>;
 
   return (
     <div>
