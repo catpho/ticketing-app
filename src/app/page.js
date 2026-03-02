@@ -1,6 +1,7 @@
+'use client';
+
 import { useEffect, useState } from 'react';
 import Parse from '../lib/parseClient';
-import TicketForm from '../components/TicketForm';
 import TicketCard from '@/components/TicketCard';
 
 export default function Home(){
