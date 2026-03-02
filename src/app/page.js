@@ -25,7 +25,7 @@ export default function Home(){
             <div>
                 <h1>Tickets</h1>
                 {tickets.map(ticket => (
-                    <TicketCard key={ticket.id} ticket={ticket} /> 
+                    <TicketCard key={ticket.objectId} ticket={ticket} /> 
                 ))}
             </div>
         );
