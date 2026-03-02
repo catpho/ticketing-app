@@ -1,20 +1,21 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
 import Parse from '../../../lib/parseClient';
 import TicketForm from '../../../components/TicketForm';
 import DeleteBlock from '../../../components/DeleteBlock';
 
-export default function TicketDetail({ params }) {
-  const router = useRouter();
+export default function TicketDetail() {
+  const pathname = usePathname();
+  const id = pathname.split('/').pop();
   const [ticket, setTicket] = useState(null);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const fetchTicket = async () => {
       try {
-        const { id } = await params;
+        if (!id) return;
         const query = new Parse.Query('Ticket');
         const result = await query.get(id);
         setTicket(result);
@@ -25,10 +26,10 @@ export default function TicketDetail({ params }) {
       }
     };
     fetchTicket();
-  }, [params]);
+  }, [id]);
 
   const handleDelete = () => {
-    router.push('/');
+    window.location.href = '/';
   };
 
   if (loading) return <div>Loading...</div>;
