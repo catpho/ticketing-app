@@ -1,10 +1,17 @@
 "use client";
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import Parse from '../lib/parseClient';
 
 export default function TicketForm({ ticket }) {
-  const [title, setTitle] = useState(ticket?.title || '');
-  const [description, setDescription] = useState(ticket?.description || '');
+  const [title, setTitle] = useState('');
+  const [description, setDescription] = useState('');
+
+  useEffect(() => {
+    if (!ticket) return;
+    const getAttr = (obj, key) => (typeof obj.get === 'function' ? obj.get(key) : obj[key]);
+    setTitle(getAttr(ticket, 'title') || '');
+    setDescription(getAttr(ticket, 'description') || '');
+  }, [ticket]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
