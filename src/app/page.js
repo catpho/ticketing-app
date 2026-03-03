@@ -1,4 +1,4 @@
-"use client";
+
 import { useEffect, useState } from 'react';
 import Parse from '../lib/parseClient';
 import TicketCard from '../components/TicketCard';
