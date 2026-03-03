@@ -8,9 +8,8 @@ export default function TicketForm({ ticket }) {
 
   useEffect(() => {
     if (!ticket) return;
-    const getAttr = (obj, key) => (typeof obj.get === 'function' ? obj.get(key) : obj[key]);
-    setTitle(getAttr(ticket, 'title') || '');
-    setDescription(getAttr(ticket, 'description') || '');
+    setTitle(ticket.title || '');
+    setDescription(ticket.description || '');
   }, [ticket]);
 
   const handleSubmit = async (e) => {
