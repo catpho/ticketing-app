@@ -7,7 +7,7 @@ export default function TicketCard({ ticket }) {
             <h2>{ticket.title}</h2>
             <p>{ticket.description}</p>
             <ProgressDisplay progress={ticket.progress} />
-            <Link href={`/tickets/${ticket.objectId}`}>
+            <Link href={`/tickets/${ticket.id}`}>
                 Edit
             </Link>
         </div>
