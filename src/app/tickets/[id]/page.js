@@ -1,13 +1,15 @@
 "use client";
 import { useEffect, useState } from 'react';
-import { useRouter } from 'next/router';
+import { useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import Parse from '../../../lib/parseClient';
 import TicketForm from '../../../components/TicketForm';
 import DeleteBlock from '../../../components/DeleteBlock';
 
 export default function TicketDetail() {
   const router = useRouter();
-  const { id } = router.query;
+  const params = useParams();
+  const id = params.id;
   const [ticket, setTicket] = useState(null);
 
   useEffect(() => {
